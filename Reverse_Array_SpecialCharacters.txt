@@ -1,0 +1,69 @@
+Reverse an array without affecting special characters
+Given a string, that contains special character together with alphabets (‘a’ to ‘z’ and ‘A’ to ‘Z’), reverse the string in a way that special characters are not affected.
+
+Examples:
+
+Input:   str = "a,b$c"
+Output:  str = "c,b$a"
+Note that $ and , are not moved anywhere.  
+Only subsequence "abc" is reversed
+
+Input:   str = "Ab,c,de!$"
+Output:  str = "ed,c,bA!$"
+
+
+
+
+
+import java.lang.*;
+public class ReverseArray {
+    
+    private static StringBuffer s;
+    
+     public static void main(String args[])
+    {
+        StringBuffer s1 = new StringBuffer("Ab,c");
+        System.out.println(reverse(s1));
+        
+    }
+     
+     static boolean isAlphabet(char x)
+       {
+          return ( (x >= 'A' &&  x <= 'Z') || (x >= 'a' &&  x <= 'z') );
+       }
+     
+     static void swap(int c,int c1)
+     {
+         int temp = s.charAt(c);
+         s.setCharAt(c,s.charAt(c1));
+         s.setCharAt(c1,(char)temp);
+       
+     }
+  static String reverse(StringBuffer str)
+{
+    s = str;
+    // Initialize left and right pointers
+    int r = str.length() - 1;
+    int l = 0;
+ 
+    // Traverse string from both ends until
+    // 'l' and 'r'
+    while (l < r)
+    {
+        // Ignore special characters
+        if (!isAlphabet(str.charAt(l)))
+            l++;
+        else if(!isAlphabet(str.charAt(r)))
+            r--;
+ 
+        else // Both str[l] and str[r] are not spacial
+        {
+            swap(l,r);
+            l++;
+            r--;
+        }
+    }
+    
+    return s.toString();
+  }
+}
