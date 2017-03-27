@@ -1,0 +1,45 @@
+
+Given a string, find the first non-repeating character in it. For example, if the input string is “GeeksforGeeks”, then output should be ‘f’ and if input string is “GeeksQuiz”, then output should be ‘G’.
+
+package relatedstring;
+
+import java.util.*;
+
+/**
+ *
+ * @author JainT
+ */
+public class SingleCharacter {
+    
+    
+     public static void main(String[] args) {
+         
+         System.out.println(firstNonRepeatedCharacter("sss"));
+         
+         }
+
+
+public static Character firstNonRepeatedCharacter(String str)
+    {
+Map<Character,Integer>  charhashtable = new HashMap<>();
+        for(int i=0;i<str.length();i++)
+        {
+            char c = str.charAt(i);
+            
+            if(charhashtable.containsKey(c))
+                charhashtable.put(c,charhashtable.get(c)+1);
+            
+            else
+                charhashtable.put(c,1);
+                    
+        }
+       
+        for(int i=0;i<charhashtable.size();i++)
+        {
+            char c = str.charAt(i);
+            if(charhashtable.get(c)==1)
+                return c;
+          }
+        return '0';
+    }
+  }
